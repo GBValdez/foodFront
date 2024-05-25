@@ -11,4 +11,5 @@ export interface OrderInterface {
   Name: string;
   Address: string;
   AddressLatLng: LatLng;
+  userId: string;
 }

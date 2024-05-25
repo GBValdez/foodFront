@@ -75,6 +75,7 @@ export class CheckoutPageComponent implements OnInit {
       Name: this.order.name,
       Address: this.order.address,
       AddressLatLng: this.order.addressLatLng,
+      userId: this.userService.currentUser.id,
     };
     this.orderService.create(ORDER_SEND).subscribe({
       next: () => {

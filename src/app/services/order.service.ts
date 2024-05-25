@@ -9,19 +9,22 @@ import {
 } from '../shared/constants/urls';
 import { Order } from '../shared/models/Order';
 import { OrderInterface } from '../shared/interfaces/order.interface';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userService: UserService) {}
 
   create(order: OrderInterface) {
     return this.http.post<Order>(ORDER_CREATE_URL, order);
   }
 
   getNewOrderForCurrentUser(): Observable<Order> {
-    return this.http.get<Order>(ORDER_NEW_FOR_CURRENT_USER_URL);
+    return this.http.get<Order>(
+      ORDER_NEW_FOR_CURRENT_USER_URL + '/' + this.userService.currentUser.id
+    );
   }
 
   pay(order: Order): Observable<string> {
