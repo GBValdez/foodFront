@@ -7,7 +7,7 @@ import {
   ORDER_PAY_URL,
   ORDER_TRACK_URL,
 } from '../shared/constants/urls';
-import { Order } from '../shared/models/Order';
+import { Order, paymentBody } from '../shared/models/Order';
 import { OrderInterface } from '../shared/interfaces/order.interface';
 import { UserService } from './user.service';
 
@@ -27,7 +27,7 @@ export class OrderService {
     );
   }
 
-  pay(order: Order): Observable<string> {
+  pay(order: paymentBody): Observable<string> {
     return this.http.post<string>(ORDER_PAY_URL, order);
   }
 
